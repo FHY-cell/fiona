@@ -1,0 +1,21 @@
+workdir='\\\\fs2\\D\\DATA\\FHY\\cip-DNA-control\\mapping_sv\\fanse_1\\'
+import glob
+import natsort
+#number=workdir.split('\\')[5]
+format = '*.fanse3'
+filename = []#用于存放文件名称
+filename=glob.glob(workdir+format)
+f_sort=natsort.natsorted(filename)
+result=open(workdir+'\\'+'all.csv','w')
+for f in f_sort:
+        f1=open(f,'r')
+        id=f.split('bw-')[1].split('.')[0]
+        result.write(str(id)+',')
+        count=0
+        while True:
+            line=f1.readline().strip('\n')
+            count+=1
+            if not line : break
+        result.write(str(count)+'\n')
+        f1.close()
+result.close()
